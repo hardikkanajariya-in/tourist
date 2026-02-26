@@ -1,5 +1,4 @@
 import HeroSection from "@/components/HeroSection";
-import HomeSearchBar from "./HomeSearchBar";
 import StatsBanner from "@/components/StatsBanner";
 import HomeFeatured from "./HomeFeatured";
 import HomeCategories from "./HomeCategories";
@@ -12,7 +11,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <HomeSearchBar />
       <StatsBanner />
       <HomeFeatured />
       <HomeCategories />
