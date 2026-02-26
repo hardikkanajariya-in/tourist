@@ -1,14 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronRight } from "lucide-react";
+import { Menu, X, Phone, ChevronRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const homeVariants = [
+  { href: "/", label: "Home 1", desc: "Classic Hero" },
+  { href: "/home-2", label: "Home 2", desc: "Video Background" },
+  { href: "/home-3", label: "Home 3", desc: "Split Layout" },
+  { href: "/home-4", label: "Home 4", desc: "Image Carousel" },
+];
+
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/packages", label: "Packages" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
@@ -53,8 +59,11 @@ function Logo() {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [homeDropdownOpen, setHomeDropdownOpen] = useState(false);
+  const [mobileHomeOpen, setMobileHomeOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname.startsWith("/home-");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -64,7 +73,20 @@ export default function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setHomeDropdownOpen(false);
+    setMobileHomeOpen(false);
   }, [pathname]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setHomeDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -96,6 +118,59 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
+            {/* Home dropdown */}
+            <div ref={dropdownRef} className="relative">
+              <button
+                onClick={() => setHomeDropdownOpen(!homeDropdownOpen)}
+                className={cn(
+                  "relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-full hover:text-primary flex items-center gap-1 cursor-pointer",
+                  textColor,
+                  isHome && "text-primary"
+                )}
+              >
+                Home
+                <ChevronDown size={14} className={cn("transition-transform duration-200", homeDropdownOpen && "rotate-180")} />
+                {isHome && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </button>
+
+              <AnimatePresence>
+                {homeDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden z-50"
+                  >
+                    {homeVariants.map((v) => (
+                      <Link
+                        key={v.href}
+                        href={v.href}
+                        className={cn(
+                          "flex flex-col px-4 py-2.5 hover:bg-primary/5 transition-colors",
+                          pathname === v.href && "bg-primary/5"
+                        )}
+                      >
+                        <span className={cn(
+                          "text-sm font-medium",
+                          pathname === v.href ? "text-primary" : "text-secondary"
+                        )}>
+                          {v.label}
+                        </span>
+                        <span className="text-[11px] text-muted">{v.desc}</span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -170,15 +245,79 @@ export default function Navbar() {
               transition={{ delay: 0.1, duration: 0.3 }}
               className="px-5 py-6 space-y-1"
             >
+              {/* Home Variants Submenu */}
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                <button
+                  onClick={() => setMobileHomeOpen((v) => !v)}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-4 rounded-2xl text-base font-medium transition-all",
+                    isHome
+                      ? "bg-primary/10 text-primary"
+                      : "text-secondary hover:bg-gray-50 active:bg-gray-100"
+                  )}
+                >
+                  <span>Home</span>
+                  <ChevronDown
+                    size={18}
+                    className={cn(
+                      "transition-transform duration-300",
+                      mobileHomeOpen ? "rotate-180" : ""
+                    )}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileHomeOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden pl-4"
+                    >
+                      {homeVariants.map((variant) => (
+                        <Link
+                          key={variant.href}
+                          href={variant.href}
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileHomeOpen(false);
+                          }}
+                          className={cn(
+                            "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
+                            pathname === variant.href
+                              ? "bg-primary/10 text-primary"
+                              : "text-secondary/70 hover:bg-gray-50"
+                          )}
+                        >
+                          <span className={cn(
+                            "w-2 h-2 rounded-full flex-shrink-0",
+                            pathname === variant.href ? "bg-primary" : "bg-gray-300"
+                          )} />
+                          <span>
+                            <span className="block">{variant.label}</span>
+                            <span className="block text-xs text-muted">{variant.desc}</span>
+                          </span>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
+                  transition={{ delay: 0.15 + i * 0.05 }}
                 >
                   <Link
                     href={link.href}
+                    onClick={() => setMobileOpen(false)}
                     className={cn(
                       "flex items-center justify-between px-4 py-4 rounded-2xl text-base font-medium transition-all",
                       pathname === link.href
