@@ -151,7 +151,7 @@ function DestinationStrip() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const destinations = [
-    { name: "Vaishno Devi", image: "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=600&h=800&fit=crop&q=80", tours: 12 },
+    { name: "Vaishno Devi", image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=600&h=800&fit=crop&q=80", tours: 12 },
     { name: "Kashmir", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=800&fit=crop&q=80", tours: 8 },
     { name: "Rajasthan", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&h=800&fit=crop&q=80", tours: 15 },
     { name: "Goa", image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&h=800&fit=crop&q=80", tours: 10 },

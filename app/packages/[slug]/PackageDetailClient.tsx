@@ -20,7 +20,7 @@ import type { TourPackage } from "@/data/packages";
 
 const categoryGalleryImages: Record<string, string[]> = {
   Pilgrimage: [
-    "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=400&h=400&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=400&fit=crop&q=80",
@@ -62,7 +62,7 @@ const categoryGalleryImages: Record<string, string[]> = {
   Festival: [
     "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=400&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=400&h=400&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=400&fit=crop&q=80",
     "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=400&fit=crop&q=80",

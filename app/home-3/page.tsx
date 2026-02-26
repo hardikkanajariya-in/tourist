@@ -196,7 +196,7 @@ function CategoryCards() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const categories = [
-    { name: "Pilgrimage", icon: "🙏", image: "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=400&h=300&fit=crop&q=80", count: 4 },
+    { name: "Pilgrimage", icon: "🙏", image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=400&h=300&fit=crop&q=80", count: 4 },
     { name: "Honeymoon", icon: "💑", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop&q=80", count: 3 },
     { name: "Adventure", icon: "🏔️", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=300&fit=crop&q=80", count: 2 },
     { name: "Wildlife", icon: "🐯", image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=400&h=300&fit=crop&q=80", count: 2 },

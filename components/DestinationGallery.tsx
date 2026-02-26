@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Link from "next/link";
 
 const destinations = [
-  { name: "Vaishno Devi", image: "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=800&h=600&fit=crop&q=80", span: "col-span-2 row-span-2", tours: "12 Tours" },
+  { name: "Vaishno Devi", image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=800&h=600&fit=crop&q=80", span: "col-span-2 row-span-2", tours: "12 Tours" },
   { name: "Ladakh", image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80", span: "col-span-1 row-span-1", tours: "8 Tours" },
   { name: "Rajasthan", image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&q=80", span: "col-span-1 row-span-1", tours: "15 Tours" },
   { name: "Goa", image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop&q=80", span: "col-span-1 row-span-2", tours: "10 Tours" },

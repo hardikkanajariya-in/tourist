@@ -23,7 +23,7 @@ export interface TourPackage {
 export const packages: TourPackage[] = [
   {
     slug: "maa-vaishno-devi-yatra",
-    image: "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=800&h=600&fit=crop&q=80",
+    image: "https://images.unsplash.com/photo-1614082242765-7c98ca0f3df3?w=800&h=600&fit=crop&q=80",
     title: "Maa Vaishno Devi Yatra",
     category: "Pilgrimage",
     duration: "4 Days / 3 Nights",
