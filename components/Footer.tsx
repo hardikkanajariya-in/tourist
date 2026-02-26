@@ -25,9 +25,9 @@ export default function Footer() {
       <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/5 blur-[100px]" />
       <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-accent/5 blur-[100px]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-10 md:pt-20 md:pb-12">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-20 md:pb-12">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Info */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-5">
             <div className="flex items-center gap-2.5">
