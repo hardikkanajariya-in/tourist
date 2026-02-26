@@ -159,13 +159,19 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
+              {/* Map Image */}
               <div className="rounded-2xl overflow-hidden border border-gray-200">
-                <div className="aspect-[16/9] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin size={40} className="text-primary mx-auto mb-2" />
-                    <p className="text-sm text-muted font-medium">Map Location</p>
-                    <p className="text-xs text-muted">Rajkot, Gujarat</p>
+                <div className="aspect-[16/9] relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=450&fit=crop&q=80"
+                    alt="Office location map"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                    <div className="text-center bg-white/90 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg">
+                      <MapPin size={28} className="text-primary mx-auto mb-1" />
+                      <p className="text-sm text-secondary font-semibold">Rajkot, Gujarat</p>
+                    </div>
                   </div>
                 </div>
               </div>

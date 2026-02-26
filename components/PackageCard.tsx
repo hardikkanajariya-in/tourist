@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Star, Clock, MapPin } from "lucide-react";
-import { categoryGradients, type TourPackage } from "@/data/packages";
+import { type TourPackage } from "@/data/packages";
 
 interface PackageCardProps {
   pkg: TourPackage;
@@ -11,7 +11,6 @@ interface PackageCardProps {
 }
 
 export default function PackageCard({ pkg, index = 0 }: PackageCardProps) {
-  const gradient = categoryGradients[pkg.category] || "from-gray-700 to-gray-500";
 
   return (
     <motion.div
