@@ -30,7 +30,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 const serviceImages = [
-  "https://images.unsplash.com/photo-1585135497273-1a86d9d9108e?w=800&h=600&fit=crop&q=80",
+  "https://images.unsplash.com/photo-1591018653367-4e4f0b946792?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop&q=80",
   "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&h=600&fit=crop&q=80",

@@ -1,43 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { MessageCircle, X } from "lucide-react";
 
 export default function FloatingCTA() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {showTooltip && (
-        <motion.div
-          initial={{ opacity: 0, x: 10 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 10 }}
-          className="absolute bottom-full right-0 mb-2 bg-secondary text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-lg"
-        >
-          Chat with us on WhatsApp
-          <div className="absolute -bottom-1 right-4 w-2 h-2 bg-secondary rotate-45" />
-        </motion.div>
-      )}
+    <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2">
+      <AnimatePresence>
+        {showTooltip && (
+          <motion.div
+            initial={{ opacity: 0, y: 6, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white rounded-xl shadow-xl px-4 py-3 text-sm text-gray-700 max-w-[200px] border border-gray-100"
+          >
+            <button
+              onClick={() => setShowTooltip(false)}
+              className="absolute -top-1.5 -right-1.5 bg-gray-100 rounded-full p-0.5 hover:bg-gray-200 transition-colors cursor-pointer"
+            >
+              <X size={12} />
+            </button>
+            <p className="font-medium text-secondary mb-0.5">Need help?</p>
+            <p className="text-xs text-gray-500">Chat with us on WhatsApp</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.a
         href="https://wa.me/919876543210"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
+        onClick={() => setShowTooltip(false)}
+        className="relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors duration-200"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 200, delay: 1.5 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="relative flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-xl shadow-green-500/30 text-white"
-        aria-label="Chat on WhatsApp"
       >
-        <MessageCircle size={26} />
-        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white" />
-        <motion.span
-          className="absolute inset-0 rounded-full border-2 border-green-400"
-          animate={{ scale: [1, 1.3, 1], opacity: [1, 0, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+        {/* pulse ring */}
+        <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-20" />
+        <MessageCircle size={24} className="relative z-10" />
       </motion.a>
     </div>
   );

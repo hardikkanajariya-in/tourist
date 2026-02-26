@@ -13,14 +13,15 @@ export default function HomeSearchBar() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-5xl glass-white rounded-3xl shadow-2xl p-6 md:p-8"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {/* Filters grid: 1 col mobile → 2 col sm → inline row lg */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Destination */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-xs font-semibold text-secondary uppercase tracking-wider">
               <MapPin size={14} className="text-primary" />
               Destination
             </label>
-            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30 appearance-none cursor-pointer">
               <option value="">Where to?</option>
               <option>Kashmir</option>
               <option>Ladakh</option>
@@ -33,13 +34,13 @@ export default function HomeSearchBar() {
             </select>
           </div>
 
-          {/* Tour Type  */}
+          {/* Tour Type */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-xs font-semibold text-secondary uppercase tracking-wider">
               <Compass size={14} className="text-primary" />
               Tour Type
             </label>
-            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30 appearance-none cursor-pointer">
               <option value="">All Types</option>
               <option>Pilgrimage</option>
               <option>Honeymoon</option>
@@ -56,7 +57,7 @@ export default function HomeSearchBar() {
               <Calendar size={14} className="text-primary" />
               Travel Month
             </label>
-            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30 appearance-none cursor-pointer">
               <option value="">Any Month</option>
               <option>January</option>
               <option>February</option>
@@ -79,7 +80,7 @@ export default function HomeSearchBar() {
               <Users size={14} className="text-primary" />
               Group Size
             </label>
-            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30">
+            <select className="w-full px-3 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary/30 appearance-none cursor-pointer">
               <option value="">Any Size</option>
               <option>1-2 Persons</option>
               <option>3-5 Persons</option>
@@ -87,18 +88,18 @@ export default function HomeSearchBar() {
               <option>10+ Persons</option>
             </select>
           </div>
+        </div>
 
-          {/* Search Button */}
-          <div className="flex items-end">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full flex items-center justify-center gap-2 bg-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors"
-            >
-              <Search size={16} />
-              Search
-            </motion.button>
-          </div>
+        {/* Search Button — always full width below filters on mobile/tablet, inline on lg */}
+        <div className="mt-4">
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full flex items-center justify-center gap-2 bg-primary text-white px-5 py-3 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors cursor-pointer"
+          >
+            <Search size={16} />
+            Search Tours
+          </motion.button>
         </div>
       </motion.div>
     </section>

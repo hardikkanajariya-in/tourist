@@ -32,7 +32,7 @@ function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: str
   }, [inView, value]);
 
   return (
-    <span className="text-4xl md:text-5xl font-bold text-white font-heading">
+    <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-white font-heading tabular-nums">
       {count.toLocaleString("en-IN")}{suffix}
     </span>
   );
@@ -40,34 +40,31 @@ function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: str
 
 export default function StatsBanner() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative bg-secondary py-16 md:py-20 overflow-hidden">
+    <section ref={ref} className="relative bg-secondary py-12 sm:py-16 md:py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/95 to-secondary" />
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
-        animate={{ x: [0, -20, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-primary/5 blur-[100px]" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent/5 blur-[100px]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="text-center"
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="text-center group"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/20 mb-4">
-                <stat.icon size={24} className="text-primary" />
+              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary/10 border border-primary/10 mb-3 sm:mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                <stat.icon size={22} className="text-primary" />
               </div>
               <div className="mb-1">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
               </div>
-              <p className="text-gray-400 text-sm">{stat.label}</p>
+              <p className="text-gray-400 text-xs sm:text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>

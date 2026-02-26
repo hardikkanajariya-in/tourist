@@ -1,12 +1,10 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Send, CheckCircle, Sparkles } from "lucide-react";
 
 export default function NewsletterBanner() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -19,55 +17,64 @@ export default function NewsletterBanner() {
   };
 
   return (
-    <section ref={ref} className="py-20 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-orange-500 to-amber-500" />
-      <motion.div
-        className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-white/10 blur-3xl"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 6, repeat: Infinity }}
-      />
+    <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden bg-gradient-to-br from-primary via-primary to-orange-600">
+      {/* decorative shapes */}
+      <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-white/5 -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-white/5 translate-x-1/3 translate-y-1/3" />
+      <div className="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-white/3 blur-[60px]" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
-            Get Exclusive Travel Deals & Itinerary Inspirations
-          </h2>
-          <p className="text-white/80 mb-8 text-sm md:text-base">
-            Subscribe to our newsletter and never miss out on special offers, new packages, and travel tips.
-          </p>
+          <span className="inline-flex items-center gap-1.5 bg-white/15 text-white text-xs sm:text-sm font-medium px-3 py-1 rounded-full mb-5 backdrop-blur-sm">
+            <Sparkles size={14} />
+            Stay Updated
+          </span>
 
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-3 sm:mb-4">
+            Get Travel Inspiration
+          </h2>
+          <p className="text-white/80 text-sm sm:text-base max-w-lg mx-auto mb-8">
+            Subscribe to our newsletter and receive handpicked travel deals, destination guides and insider tips.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
           {subscribed ? (
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-white/20 backdrop-blur-md rounded-2xl p-6 text-white"
+              className="flex items-center justify-center gap-2 text-white text-base sm:text-lg font-medium"
             >
-              <p className="text-lg font-semibold">🎉 Thank you for subscribing!</p>
-              <p className="text-sm mt-1 text-white/80">You&apos;ll hear from us soon with exciting travel deals.</p>
+              <CheckCircle size={22} />
+              Thank you for subscribing!
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                required
-                className="flex-1 px-5 py-3.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="flex-1 px-4 py-3 rounded-xl bg-white/15 border border-white/20 text-white placeholder-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white/40 text-sm sm:text-base"
               />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
+              <button
                 type="submit"
-                className="px-6 py-3.5 bg-secondary text-white rounded-full font-semibold text-sm flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-colors duration-200 text-sm sm:text-base cursor-pointer"
               >
-                <Send size={16} />
                 Subscribe
-              </motion.button>
+                <Send size={16} />
+              </button>
             </form>
           )}
         </motion.div>
